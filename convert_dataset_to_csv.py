@@ -1,10 +1,11 @@
 import os
 import sys
+
+import numpy as np
 import pandas as pd
 import pyprind
 
 basepath = 'aclImdb'
-
 labels = {'pos': 1, 'neg':0}
 
 pbar = pyprind.ProgBar(50000, stream=sys.stdout)
@@ -21,8 +22,6 @@ for s in ('test', 'train'):
             pbar.update()
             
 df.columns = ['review', 'sentiment']
-
-import numpy as np
 
 np.random.seed(0)
 df = df.reindex(np.random.permutation(df.index))
